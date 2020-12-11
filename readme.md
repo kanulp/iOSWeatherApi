@@ -17,7 +17,7 @@
 
 <tr>
 <td>
- <img src="https://raw.githubusercontent.com/kanulp/iOSWeatherApi/main/Screenshots/ss1.png" width="600"   title="Screenshot 1">
+ <img src="https://raw.githubusercontent.com/kanulp/iOSWeatherApi/main/screenshots/ss1.png" width="600"   title="Screenshot 1">
 </td>
 <td>
  <img src="https://raw.githubusercontent.com/kanulp/iOSWeatherApi/main/screenshots/ss2.png" width="600" title="Screenshot 2">
