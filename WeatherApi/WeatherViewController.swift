@@ -34,8 +34,8 @@ class WeatherViewController: UIViewController {
                    // self.tableView.reloadData()
                     
                     self.tv_desc.text = data.weather[0].main
-                    self.tv_humidity.text = "\(data.main.humidity)"
-                    self.tv_temp.text = "\(data.main.temp) C"
+                    self.tv_humidity.text = "\(data.main?.humidity ?? 0.0)"
+                    self.tv_temp.text = "\(data.main?.temp ?? 0.0) ˚C"
                 }
             }
         )

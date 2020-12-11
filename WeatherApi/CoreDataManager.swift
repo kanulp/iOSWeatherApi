@@ -13,10 +13,8 @@ class CoreDataManager {
     static var shared = CoreDataManager()
     
     func deleteCity(city : CityDb)  {
-
         persistentContainer.viewContext.delete(city)
         saveContext()
-
     }
     
     func insertCity(city : String,country:String) {
@@ -24,48 +22,35 @@ class CoreDataManager {
         let c = CityDb(context: persistentContainer.viewContext)
         c.cityName = city
         c.countryName = country
-
         saveContext()
-        
     }
     
     
-//    func search(text : String) -> [ToDo] {
-//
-//        let fetch : NSFetchRequest =  ToDo.fetchRequest()
-//            let predicate = NSPredicate(format: "task BEGINSWITH [c] %@", text)
-//            // select * from ToDo where task BEGINSWITH
-//            fetch.predicate = predicate
-//            var result : [ToDo] = [ToDo]()
-//                   do{
-//                       result = try (persistentContainer.viewContext.fetch(fetch) as? [ToDo])!
-//
-//                   }catch{
-//
-//
-//                   }
-//
-//            return result
-//
-//
-//    }
+    func search(text : String) -> [CityDb] {
+
+        let fetch : NSFetchRequest =  CityDb.fetchRequest()
+            let predicate = NSPredicate(format: "cityName BEGINSWITH [c] %@", text)
+            // select * from ToDo where task BEGINSWITH
+            fetch.predicate = predicate
+            var result : [CityDb] = [CityDb]()
+                   do{
+                       result = try (persistentContainer.viewContext.fetch(fetch) as? [CityDb])!
+                   }catch{
+                   }
+            return result
+    }
+    
     func fetchCityFromCoreData() -> [CityDb]{
         let fetch : NSFetchRequest =  CityDb.fetchRequest()
         fetch.sortDescriptors = [NSSortDescriptor.init(key: "cityName", ascending: true)]
-        
         
         var result : [CityDb] = [CityDb]()
         do{
             result = try (persistentContainer.viewContext.fetch(fetch) as? [CityDb])!
         
         }catch{
-            
-            
         }
-        
         return result
-        
-        
     }
     
     // MARK: - Core Data stack

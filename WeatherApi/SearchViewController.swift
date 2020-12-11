@@ -15,9 +15,7 @@ class SearchViewController: UITableViewController,UISearchBarDelegate,ServiceDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-    
 
     func ServiceDelegateDidFinishWithList(list: [String]) {
           DispatchQueue.main.async {
@@ -25,8 +23,6 @@ class SearchViewController: UITableViewController,UISearchBarDelegate,ServiceDel
             self.tableView.reloadData()
         }
     }
-
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
             print(searchText)
@@ -71,10 +67,10 @@ class SearchViewController: UITableViewController,UISearchBarDelegate,ServiceDel
     
     func save(city:String,country:String){
         
-        let alert = UIAlertController.init(title: "Add \(city) ?", message: "Are you sure you want to add ?", preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "Add \(city) ?", message: "Are you sure you want to add \(city) into your phone ?", preferredStyle: .alert)
                var textField = UITextField()
                
-               let action = UIAlertAction.init(title: "Save", style: .default) { (action) in
+               let action = UIAlertAction.init(title: "Add", style: .default) { (action) in
                  
                 CoreDataManager.shared.insertCity(city: city,country:country)
                 self.navigationController?.popViewController(animated: true)
@@ -83,7 +79,6 @@ class SearchViewController: UITableViewController,UISearchBarDelegate,ServiceDel
                    self.dismiss(animated: true, completion: nil)
                    }
                    
-               
                alert.addAction(action)
                alert.addAction(cancelAction)
                present(alert, animated: true, completion: nil)

@@ -11,12 +11,15 @@ class InitialViewController: UITableViewController {
 
     @IBOutlet var btn_add: UIBarButtonItem!
     
+    @IBOutlet var searchBar: UISearchBar!
+    
     var allCity : [CityDb] = [CityDb]()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllCity()
+        self.searchBar.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -53,8 +56,6 @@ class InitialViewController: UITableViewController {
        return cell
    }
    
-
-   
    // Override to support conditional editing of the table view.
    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
        // Return false if you do not want the specified item to be editable.
@@ -62,7 +63,6 @@ class InitialViewController: UITableViewController {
    }
    
 
-   
    // Override to support editing the table view.
    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        if editingStyle == .delete {
@@ -78,6 +78,21 @@ class InitialViewController: UITableViewController {
            
         fetchAllCity()
         tableView.reloadData()
+        
     }
+}
 
+
+extension InitialViewController : UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText == ""){
+            fetchAllCity()
+        }
+        else {
+        allCity = CoreDataManager.shared.search(text: searchText)
+         tableView.reloadData()
+        }
+    }
+    
 }

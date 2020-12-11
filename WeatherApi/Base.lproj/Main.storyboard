@@ -62,6 +62,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btn_add" destination="YUI-l5-FLv" id="GiW-3b-uuE"/>
+                        <outlet property="searchBar" destination="VHY-5t-mzB" id="4Bi-TR-APe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjL-zZ-B5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
