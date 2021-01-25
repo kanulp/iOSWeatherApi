@@ -17,12 +17,31 @@ class CoreDataManager {
         saveContext()
     }
     
+    //simple insert into coredata
     func insertCity(city : String,country:String) {
-        
+        if !isInsertedBefore(name: city){
         let c = CityDb(context: persistentContainer.viewContext)
         c.cityName = city
         c.countryName = country
         saveContext()
+        }
+    }
+    //to check wheter we inserted city already or not
+    func isInsertedBefore(name: String) -> Bool {
+        let fetch: NSFetchRequest = CityDb.fetchRequest()
+               let predicate = NSPredicate(format: "cityName == %@", name)
+               fetch.predicate = predicate
+               var result : [CityDb] = [CityDb]()
+                var inserted = false
+                do{
+                   result = try(persistentContainer.viewContext.fetch(fetch) as? [CityDb])!
+                    if result.count > 0{
+                        inserted = true
+                    }
+                }catch{
+                print(error)
+               }
+               return inserted
     }
     
     
@@ -52,6 +71,20 @@ class CoreDataManager {
         }
         return result
     }
+    
+    lazy var myFetchResultsController : NSFetchedResultsController<CityDb> = {
+       //fetch
+        let fetch : NSFetchRequest<CityDb> = CityDb.fetchRequest()
+        fetch.sortDescriptors = [NSSortDescriptor(key: "cityName", ascending: false)]
+        
+        let fetchRcontroller = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: "cityName", cacheName: nil)
+        
+        return fetchRcontroller
+        
+        //fetchcontroller
+        
+    }()
+    
     
     // MARK: - Core Data stack
 

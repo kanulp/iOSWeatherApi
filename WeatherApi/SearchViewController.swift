@@ -41,7 +41,7 @@ class SearchViewController: UITableViewController,UISearchBarDelegate,ServiceDel
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
 
 
         let array = cityList[indexPath.row].components(separatedBy: ",")
